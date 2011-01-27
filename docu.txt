@@ -1,0 +1,14 @@
+reader.py:
+  read_series(filepath)
+  
+epguides.py:
+  get_airdate(epguides_url)
+  
+filestube.py:
+  build_query(search_phrase)
+  check_links(links)
+  extract_downloadlinks(link)
+  build_plowfile(links,filepath='/tmp/plowfile.txt')
+  search_links(phrase)
+ 
+  
