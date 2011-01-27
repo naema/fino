@@ -1,0 +1,48 @@
+1,1,1,"",13/Aug/07,"Pilot",n
+2,1,2,"",20/Aug/07,"Hell-A-Woman",n
+3,1,3,"",27/Aug/07,"The Whore of Babylon",n
+4,1,4,"",03/Sep/07,"Fear and Loathing at the Fundraiser",n
+5,1,5,"",10/Sep/07,"LOL",n
+6,1,6,"",17/Sep/07,"Absinthe Makes the Heart Grow Fonder",n
+7,1,7,"",24/Sep/07,"Girls Interrupted",n
+8,1,8,"",01/Oct/07,"California Son",n
+9,1,9,"",08/Oct/07,"Filthy Lucre",n
+10,1,10,"",15/Oct/07,"The Devil's Threesome",n
+11,1,11,"",22/Oct/07,"Turn The Page",n
+12,1,12,"",29/Oct/07,"The Last Waltz",n
+13,2,1,"",28/Sep/08,"Slip of the Tongue",n
+14,2,2,"",05/Oct/08,"The Great Ashby",n
+15,2,3,"",12/Oct/08,"No Way to Treat a Lady",n
+16,2,4,"",19/Oct/08,"The Raw & the Cooked",n
+17,2,5,"",26/Oct/08,"Vaginatown",n
+18,2,6,"",02/Nov/08,"Coke Dick & the First Kick",n
+19,2,7,"",09/Nov/08,"In a Lonely Place",n
+20,2,8,"",16/Nov/08,"Going Down and Out in Beverly Hills",n
+21,2,9,"",23/Nov/08,"La Ronde",n
+22,2,10,"",30/Nov/08,"In Utero",n
+23,2,11,"",07/Dec/08,"Blues from Laurel Canyon",n
+24,2,12,"",14/Dec/08,"La Petite Mort",n
+25,3,1,"STC301",27/Sep/09,"Wish You Were Here",n
+26,3,2,"",04/Oct/09,"The Land Of Rape And Honey",n
+27,3,3,"",11/Oct/09,"Verities & Balderdash",n
+28,3,4,"",18/Oct/09,"Zoso",n
+29,3,5,"",25/Oct/09,"Slow Happy Boys",n
+30,3,6,"",01/Nov/09,"Glass Houses",n
+31,3,7,"",08/Nov/09,"So Here's The Thing ...",n
+32,3,8,"",15/Nov/09,"The Apartment",n
+33,3,9,"",22/Nov/09,"Mr. Bad Example",n
+34,3,10,"",29/Nov/09,"Dogtown",n
+35,3,11,"",06/Dec/09,"Comings & Goings",n
+36,3,12,"",13/Dec/09,"Mia Culpa",n
+37,4,1,"",09/Jan/11,"Exile On Main St.",n
+38,4,2,"",16/Jan/11,"Suicide Solution",n
+39,4,3,"",23/Jan/11,"Home Sweet Home",n
+40,4,4,"",30/Jan/11,"Monkey Business",n
+41,4,5,"",06/Feb/11,"Freeze Frame",n
+42,4,6,"",13/Feb/11,"Lawyers Guns and Money",n
+43,4,7,"",20/Feb/11,"The Recused",n
+44,4,8,"",27/Feb/11,"Lights. Camera. Asshole.",n
+45,4,9,"",06/Mar/11,"Another Perfect Day",n
+46,4,10,"",13/Mar/11,"The Trial",n
+47,4,11,"",20/Mar/11,"The Last Supper",n
+48,4,12,"",27/Mar/11,"...And Justice for All",n
