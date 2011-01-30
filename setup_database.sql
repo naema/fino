@@ -1,9 +1,6 @@
 create database if not exists tvdb;
-use database tvbd;
 
-drop table genres;
-drop table series;
-drop table episodes;
+drop table if exists genres, series, episodes;
 
 create table genres(
   id              integer not null primary key auto_increment,
@@ -12,17 +9,19 @@ create table genres(
 
 create table series(
   id              integer not null primary key auto_increment,
-  title           varchar (255) not null,
-  url             varchar (255),
+  title           varchar (255) not null unique,
+  url             varchar (255) unique,
   genre_id        integer references genres(id)
 );
 
 create table episodes(
   id              integer not null primary key auto_increment,
-  series_id       integer references series(id),
+  series_id       integer not null references series(id),
   season          integer not null,
   episode         integer not null,
   title           varchar(255),
   nr              integer,
-  airdate         date
+  airdate         date,
+  status          ENUM('pending','downloading','existent'),
+  unique key se_key (season, episode)
 );

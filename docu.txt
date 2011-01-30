@@ -1,14 +1,23 @@
-reader.py:
-  read_series(filepath)
-  
 epguides.py:
-  get_airdate(epguides_url)
+  get_airtable(epguides_url)
+  get_epguides_url(series)
   
 filestube.py:
   build_query(search_phrase)
-  check_links(links)
   extract_downloadlinks(link)
   build_plowfile(links,filepath='/tmp/plowfile.txt')
   search_links(phrase)
+
+linkchecker.py:
+  check_links(links)
  
+db.py:
+  connect_to_database()
+  write_episodes_to_database(data,cursor)
+  write_series_to_database(data,cursor)
+  check_airdate(series,cursor)
   
+fino.py:
+  get_episodes_from_txt(filepath)
+  
+plowshare supports Megaupload, Rapidshare, 2Shared, 4Shared, ZShare, Badongo, Divshare.com, Depositfiles, Mediafire, Netload.in, Storage.to, Uploaded.to, Uploading.com, Sendspace, Usershare, X7.to and some others. Refer to the README for more info.

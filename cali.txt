@@ -4,7 +4,7 @@
 4,1,4,"",03/Sep/07,"Fear and Loathing at the Fundraiser",n
 5,1,5,"",10/Sep/07,"LOL",n
 6,1,6,"",17/Sep/07,"Absinthe Makes the Heart Grow Fonder",n
-7,1,7,"",24/Sep/07,"Girls Interrupted",n
+7,1,7,"",24/Sep/07,"Girls, Interrupted",n
 8,1,8,"",01/Oct/07,"California Son",n
 9,1,9,"",08/Oct/07,"Filthy Lucre",n
 10,1,10,"",15/Oct/07,"The Devil's Threesome",n

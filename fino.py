@@ -1,63 +1,66 @@
 #!/usr/bin/env python
-import filestube
+# coding=UTF-8
 import urllib
 import time
-import MySQLdb 
-from BeautifulSoup import BeautifulSoup
 import csv
+import StringIO
+from BeautifulSoup import BeautifulSoup
+from subprocess import call
+import filestube
+import epguides
+import db
 
-#read the serieslist, check for new episodes and build plowfile
+"""read the series names from file and try to find in database
+  case 1: new series:
+          get the epguides link from google
+          insert the new series into database. 
+          write the eptable from epguides to a txt file and fill database.
+  case 2: existent series:
+          check airdate in database - 
+          if airdate was yesterday: search links
+"""
+
+#get list of series to download
 def read_series(filepath):
   download_candidates = open(filepath, 'r')
+  series_list = []
   for line in download_candidates:
     line = line.strip()
-    print line
-    links = filestube.search_links(line)
-    print links
-    filestube.build_plowfile(links)  
+    series_list.append(line)
   download_candidates.close()
+  return series_list
 
-filepath = '/home/michelle/codes/fino/series.txt'
-read_list(filepath)
-
-#TODO: look up next airdate in database
-def check_airdate(series):
-  url = 'http://epguides.com/'+series
-  date_page = urllib.urlopen(url).read()
-  soup = BeautifulSoup(date_page)
-  div = soup.find("div",id="eplist")
-
-#TODO:erste zeile wegschmeißen, kommas aus den titeln entfernen!
-def get_episodes_from_txt(filepath):
-  cursor = connect_to_database()
-  f = open(filepath, 'r')
-  for line in f:
-    s = line.strip().split(",")  
-    #data array contains: season, episode, airdate, title
-    t = time.strptime(s[4],"%d/%b/%y")
-    date = s[4].split("/")
-    airdate = time.strftime("%Y-%m-%d",t)
-    data = [s[1],s[2],`airdate`,s[5]]
-    #write into database
-    write_episodes_to_database(data,cursor)
-    print airdate
+#saves download links to file
+def build_plowfile(links,filepath='/tmp/plowfile.txt'):
+  f = open(filepath, 'a')
+  for downloadlink in links:
+    f.write(downloadlink+'\n')
   f.close()
   
-def connect_to_database():
-  mysql_opts = { 
-    'host': "localhost", 
-    'user': "root", 
-    'pass': "pw", 
-    'db':   "tvdb" 
-    } 
-  mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db'])
-  mysql.apilevel = "2.0" 
-  mysql.paramstyle = "format" 
-  return mysql.cursor()  
-    
-def write_episodes_to_database(data,cursor):
-  cursor.execute("INSERT INTO episodes (season, episode, airdate, title) VALUES ("+data[0]+","+data[1]+","+data[2]+","+data[3]+")") 
+#search download links for every series in database and download them
+#plowfile='/tmp/plowfile.txt'
+#output_directory='/home/michelle/Videos/fino'
+def download_series():
+  ep_list = db.get_download_list()
+  for episode in ep_list:
+    links = filestube.search_links(episode)
+    build_plowfile(links)
+    #start plowshare  
+    #call(["plowdown","-o", filepath, "-m", plowfile])
+  
+#add a new series and episodes to database
+def add_new_series(title,epg_url=''):
+  if epg_url=='':
+    epg_url = epguides.get_epguides_url(title)
+  s = epguides.get_airtable(epg_url)
+  eptable = list(csv.DictReader(StringIO.StringIO(s), delimiter=',', quotechar='"'))
+  for line in eptable:
+    date = line['airdate']
+    t = time.strptime(date,"%d/%b/%y")
+    line['airdate'] = time.strftime("%Y-%m-%d",t)
+  series_id = db.get_series_id(title)
+  if series_id == -1:
+    series_id = db.write_series_to_database(title,epg_url)
+  db.write_episodes_to_database(eptable,series_id)  
+  
 
-def get_month(string):
-  months = {'Jan':'01','Feb':'02','Mar':'03','Apr':'04','May':'05','Jun':'06','Jul':'07','Aug':'08','Sep':'09','Oct':'10','Nov':'11','Dec':'12'}
-  return months[string]

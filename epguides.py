@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import urllib
 from BeautifulSoup import BeautifulSoup
 
@@ -13,17 +12,14 @@ def get_epguides_url(series):
 	a = div.find('a')
 	return a['href']
 
-#write airdate table from epguides to txt
-def get_airdate(epguides_url):
-	site = urllib.urlopen(epguides_url).read()#epguides
+#get airdate table from epguides as string
+def get_airtable(epguides_url):
+	site = urllib.urlopen(epguides_url).read()
 	soup = BeautifulSoup(site)
 	navbar = soup.find("div", id="topnavbar")
 	eplink = navbar.findAll("a")[4]['href']
 	site = urllib.urlopen(eplink).read()
 	soup = BeautifulSoup(site)
 	eptable = soup.find("textarea").string
-	eptable = eptable.strip()
-	f = open("/tmp/fino.txt", 'a')
-	f.write(eptable)
-	f.close()
+	return eptable.strip()
 
