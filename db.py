@@ -5,6 +5,7 @@ def connect_to_database(mysql_opts = {
     'user': "root", 
     'pass': "pw", 
     'db':   "tvdb" 
+    #read_default_file
     } ):
   mysql = MySQLdb.connect(mysql_opts['host'], mysql_opts['user'], mysql_opts['pass'], mysql_opts['db'])
   mysql.apilevel = "2.0" 
@@ -57,7 +58,7 @@ def write_series_to_database(title,epg_url):
   return series_id
   
   
-#returns a list of episodes, e.g. ["californication s04e03", ...]
+#returns a list of pending episodes, e.g. ["californication s04e03", ...]
 def get_download_list():
   db = connect_to_database()
   cursor = db.cursor()
@@ -76,6 +77,19 @@ def get_download_list():
   db.close()
   return episode_list
 
+def count_pending():
+	db = connect_to_database()
+  cursor = db.cursor()
+  s="SELECT count FROM series AS s, episodes AS e WHERE (e.airdate <=  CURDATE() AND e.status = 'pending' AND s.id = e.series_id)"
+  cursor.execute(s)
+  results = cursor.fetchone()
+  count_pending = 0
+  for row in results:
+    number_pendig = row[0]
+  cursor.close()
+  db.close()
+  return count_pending
 #TODO: mark series downloading or existent
-
+#delete series from database, set series inactive/active
+#check for new episodes on epguide.com
   

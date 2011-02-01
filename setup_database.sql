@@ -1,5 +1,7 @@
 create database if not exists tvdb;
 
+use tvdb;
+
 drop table if exists genres, series, episodes;
 
 create table genres(
@@ -22,6 +24,6 @@ create table episodes(
   title           varchar(255),
   nr              integer,
   airdate         date,
-  status          ENUM('pending','downloading','existent'),
-  unique key se_key (season, episode)
+  status          ENUM('expired','pending','downloading','existent'),
+  unique key se_key (series_id, season, episode)
 );
